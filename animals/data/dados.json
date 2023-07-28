@@ -1,0 +1,32 @@
+[
+    {
+        "id":1,
+        "nome": "Girafa",
+        "patas": 4,
+        "classe": "Mamíferos"
+    },
+    {
+        "id": 2,
+        "nome": "Coruja",
+        "patas": 0,
+        "classe": "aves"
+    },
+    {
+        "id": 3,
+        "nome": "Gaivota",
+        "patas": 0,
+        "classe": "aves"
+    },
+    {
+        "id": 4,
+        "nome": "Sapo",
+        "patas": 4,
+        "classe": "Anfibios"
+    },
+    {
+        "id": 5,
+        "nome": "Serpente",
+        "patas": 0,
+        "classe":"Réptil"
+    }
+]
