@@ -3,37 +3,45 @@ const app = express()
 const data = require('./data/dados.json')
 const bodyParser = require('body-parser')
 
-
-data.push({
-    "id": 6,
-    "nome":"Teste",
-    "patas": 5,
-    "classe": "teste"
-})
-// Getting Request
 app.get('/', (req, res) => {
     res.json(data)
 })
 
 app.get('/animal/:id', (req, res) => {
     let animal = data.filter(animal => animal.id == req.params.id)
-    res.json(animal)
-})
+    if(animal.length >= 1) {
+        res.json(animal)
+    } else {
+        res.json({ error: "Animal não existe!"})
+    }
 
+})
 // POST - Using Body Request
 app.use(express.json())
 
 app.post('/animal/new',(req, res) => {
 
-    console.log(req.body.nome)
+    const {id, nome, patas, classe} = req.body;
+    try {
+        nome.length
+    } catch(error) {
+        return res.status(401).send({ error: 'Json invalído' })
+    }
+    if(!id) {
+        return res.json({ error: 'Json invalído' })
+    } 
     data.push({
-        "id": req.body.id,
-        "nome": req.body.nome,
-        "patas": req.body.patas,
-        "classe": req.body.classe
+        "id": id,
+        "nome": nome,
+        "patas": patas,
+        "classe": classe
     })
-    res.json(req.body)
+    res.json({ ok: true })
 })
+
+// app.delete('/animal/:id', (req, res) => {
+//     data.
+// })
 
 app.listen(3000, () => {
     console.log('Rodando!!')
